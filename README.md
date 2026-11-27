@@ -22,7 +22,7 @@ Follow these steps to set up and run the project locally:
 
 1. **Clone the repository:**
 ```bash
-git clone [https://github.com/nikassafronovs/react_phone-catalog.git](https://github.com/nikassafronovs/phone-catalog-react-typescript.git)
+git clone [https://github.com/nikassafronovs/phone-catalog-react-typescript.git](https://github.com/nikassafronovs/phone-catalog-react-typescript.git)
 cd phone-catalog-react-typescript
 ```
 
