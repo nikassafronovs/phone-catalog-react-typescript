@@ -55,29 +55,39 @@
 .paginationButtons {
   width: 32px;
   height: 32px;
-  background: none;
-
+  background-color: var(--surface-color);
+  color: var(--primary-color);
   border: 1px solid var(--icons-color);
   cursor: pointer;
 
   transition:
+    background-color 0.3s,
     border-color 0.3s,
+    color 0.3s,
     opacity 0.3s;
 
-    &:disabled {
+  &:disabled {
+    background-color: transparent;
     border-color: var(--elements-color);
+    opacity: 0.4;
     cursor: default;
   }
 
   &:hover:not(:disabled) {
+    background-color: var(--surface-hover-color);
     border-color: var(--primary-color);
   }
 }
 
 .activePage {
-  background-color: var(--primary-color);
-  color: var(--white-color);
-  border-color: var(--primary-color);
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--accent-text-color);
+
+  &:hover:not(:disabled) {
+    background-color: var(--accent-color);
+    border-color: var(--accent-color);
+  }
 }
 
 .sortDropdown {

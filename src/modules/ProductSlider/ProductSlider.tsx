@@ -5,8 +5,11 @@ import { ProductCard } from '../ProductCard';
 import styles from './ProductSlider.styles.module.scss';
 
 import ArrowLeft from '../../assets/icons/VectorLeft.svg?react';
+import ArrowLeftDark from '../../assets/icons/VectorLeft-dark.svg?react';
 import ArrowRight from '../../assets/icons/VectorRight.svg?react';
+import ArrowRightDark from '../../assets/icons/VectorRight-dark.svg?react';
 import { Product } from '../../types/Products';
+import { useTheme } from '../../context/ThemeContext';
 
 type Props = {
   title: string;
@@ -21,6 +24,7 @@ export const ProductSlider: React.FC<Props> = ({
 }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [slideStep, setSlideStep] = useState(0);
+  const { theme } = useTheme();
 
   const firstProductRef = useRef<HTMLDivElement | null>(null);
 
@@ -58,7 +62,7 @@ export const ProductSlider: React.FC<Props> = ({
             onClick={handleLeft}
             disabled={currentSlide === 0}
           >
-            <ArrowLeft />
+            {theme === 'dark' ? <ArrowLeftDark /> : <ArrowLeft />}
           </button>
 
           <button
@@ -67,7 +71,7 @@ export const ProductSlider: React.FC<Props> = ({
             onClick={handleRight}
             disabled={currentSlide === maxSlide}
           >
-            <ArrowRight />
+            {theme === 'dark' ? <ArrowRightDark /> : <ArrowRight />}
           </button>
         </div>
       </div>

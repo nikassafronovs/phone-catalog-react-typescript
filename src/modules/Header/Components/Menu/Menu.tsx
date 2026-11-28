@@ -1,14 +1,19 @@
+/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import styles from './Menu.styles.module.scss';
 import classNames from 'classnames';
 import { Logo } from '../../../../components/Logo';
 import { Nav } from '../Nav';
 import CloseButton from '../../../../assets/icons/closebutton.svg?react';
+import CloseButtonDark from '../../../../assets/icons/closebutton-dark.svg?react';
 import FavoritesHeart from '../../../../assets/icons/favouritesheart.svg?react';
+import FavoritesHeartDark from '../../../../assets/icons/favouritesheart-dark.svg?react';
+import FavoritesBagDark from '../../../../assets/icons/shoppingbag-dark.svg?react';
 import FavoritesBag from '../../../../assets/icons/shoppingbag.svg?react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { useFavorites } from '../../../../context';
 import { useCart } from '../../../../context/CartContext';
+import { useTheme } from '../../../../context/ThemeContext';
 
 type Props = {
   isOpen: boolean;
@@ -19,6 +24,7 @@ export const Menu: React.FC<Props> = ({ isOpen, onClose }) => {
   const { favorites } = useFavorites();
   const { cart } = useCart();
   const location = useLocation();
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (isOpen) {
@@ -49,7 +55,7 @@ export const Menu: React.FC<Props> = ({ isOpen, onClose }) => {
           className={styles.close}
           aria-label="Close menu"
         >
-          <CloseButton />
+          {theme === 'dark' ? <CloseButtonDark /> : <CloseButton />}
         </button>
       </div>
 
@@ -68,7 +74,7 @@ export const Menu: React.FC<Props> = ({ isOpen, onClose }) => {
           aria-label="Open favorites"
         >
           <div className={styles.iconWrapper}>
-            <FavoritesHeart />
+            {theme === 'dark' ? <FavoritesHeartDark /> : <FavoritesHeart />}
             {favorites.length > 0 && (
               <span className={styles.counter}>{favorites.length}</span>
             )}
@@ -87,7 +93,7 @@ export const Menu: React.FC<Props> = ({ isOpen, onClose }) => {
           aria-label="Open Cart"
         >
           <div className={styles.iconWrapper}>
-            <FavoritesBag />
+            {theme === 'dark' ? <FavoritesBagDark /> : <FavoritesBag />}
             {cart.length > 0 && (
               <span className={styles.counter}>
                 {cart.reduce((sum, item) => sum + item.quantity, 0)}

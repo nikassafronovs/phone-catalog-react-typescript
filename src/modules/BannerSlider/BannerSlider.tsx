@@ -6,11 +6,15 @@ import styles from './BannerSlider.styles.module.scss';
 import { banners } from './banners';
 
 import ArrowLeft from '../../assets/icons/VectorLeft.svg?react';
+import ArowLeftDark from '../../assets/icons/VectorLeft-dark.svg?react';
 import ArrowRight from '../../assets/icons/VectorRight.svg?react';
+import ArrowRightDark from '../../assets/icons/VectorRight-dark.svg?react';
+import { useTheme } from '../../context/ThemeContext';
 
 export const BannerSlider = () => {
   const [current, setCurrent] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
+  const { theme } = useTheme();
 
   const sliderInterval = 5000;
 
@@ -55,7 +59,7 @@ export const BannerSlider = () => {
     <section className={styles.slider}>
       <div className={styles.content}>
         <button type="button" className={styles.arrowLeft} onClick={handlePrev}>
-          <ArrowLeft />
+          {theme === 'dark' ? <ArowLeftDark /> : <ArrowLeft />}
         </button>
 
         <div
@@ -81,7 +85,7 @@ export const BannerSlider = () => {
           className={styles.arrowRight}
           onClick={handleNext}
         >
-          <ArrowRight />
+          {theme === 'dark' ? <ArrowRightDark /> : <ArrowRight />}
         </button>
       </div>
 

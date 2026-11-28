@@ -1,10 +1,14 @@
 import { CartItemType } from '../../types/CartItemType';
 import styles from './CartItem.styles.module.scss';
 import CloseButton from '../../assets/icons/closebutton.svg?react';
+import CloseButtonDark from '../../assets/icons/closebutton-dark.svg?react';
 import AddIcon from '../../assets/icons/add.svg?react';
+import AddIconDark from '../../assets/icons/add-dark.svg?react';
 import DisabledIcon from '../../assets/icons/disabled.svg?react';
+import DisabledIconDark from '../../assets/icons/disabled-dark.svg?react';
 import { useCart } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../../context/ThemeContext';
 
 type Props = {
   item: CartItemType;
@@ -12,6 +16,7 @@ type Props = {
 
 export const CartItem: React.FC<Props> = ({ item }) => {
   const { removeFromCart, increaseQuantity, decreaseQuantity } = useCart();
+  const { theme } = useTheme();
 
   return (
     <article className={styles.cartItem}>
@@ -21,7 +26,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
           className={styles.closeButton}
           onClick={() => removeFromCart(item.product.itemId)}
         >
-          <CloseButton />
+          {theme === 'dark' ? <CloseButtonDark /> : <CloseButton />}
         </button>
         <img
           className={styles.image}
@@ -45,7 +50,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
             className={styles.counterButton}
             onClick={() => decreaseQuantity(item.product.itemId)}
           >
-            <DisabledIcon />
+            {theme === 'dark' ? <DisabledIconDark /> : <DisabledIcon />}
           </button>
           <span className={styles.quantity}>{item.quantity}</span>
           <button
@@ -53,7 +58,7 @@ export const CartItem: React.FC<Props> = ({ item }) => {
             className={styles.counterButton}
             onClick={() => increaseQuantity(item.product.itemId)}
           >
-            <AddIcon />
+            {theme === 'dark' ? <AddIconDark /> : <AddIcon />}
           </button>
         </div>
 

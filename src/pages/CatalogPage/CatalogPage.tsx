@@ -8,9 +8,12 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 import { sortProducts } from '../../utils/sortProducts/sortProducts';
 import { paginateProducts } from '../../utils/paginateProducts';
 import ArrowLeft from '../../assets/icons/VectorLeft.svg?react';
+import ArrowLeftDark from '../../assets/icons/VectorLeft-dark.svg?react';
 import ArrowRight from '../../assets/icons/VectorRight.svg?react';
+import ArrowRightDark from '../../assets/icons/VectorRight-dark.svg?react';
 import { DropDown } from '../../components/DropDown';
 import { BreadCrumbs } from '../../components/BreadCrumbs';
+import { useTheme } from '../../context/ThemeContext';
 
 type Category = 'phones' | 'tablets' | 'accessories';
 
@@ -21,6 +24,7 @@ export const CatalogPage = () => {
 
   const [searchParams, setSearchParams] = useSearchParams();
   const { pathname } = useLocation();
+  const { theme } = useTheme();
 
   const category = pathname.slice(1) as Category;
 
@@ -159,7 +163,7 @@ export const CatalogPage = () => {
                   disabled={page === 1}
                   onClick={() => handlePageChange(page - 1)}
                 >
-                  <ArrowLeft />
+                  {theme === 'dark' ? <ArrowLeftDark /> : <ArrowLeft />}
                 </button>
 
                 {Array.from({ length: endPage - startPage + 1 }, (_, index) => {
@@ -182,7 +186,7 @@ export const CatalogPage = () => {
                   disabled={page === totalPages}
                   onClick={() => handlePageChange(page + 1)}
                 >
-                  <ArrowRight />
+                  {theme === 'dark' ? <ArrowRightDark /> : <ArrowRight />}
                 </button>
               </div>
             )}

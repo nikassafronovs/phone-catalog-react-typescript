@@ -6,6 +6,13 @@
   --icons-color: #B4BDC3;
   --green-color: #27AE60;
   --background-color: #fff;
+  --surface-color: #fff;
+  --surface-hover-color: #fafbfc;
+  --accent-color: #313237;
+  --accent-text-color: #fff;
+  --option-text: #89939A;
+  --option-hover-text: #313237;
+  --option-hover-bg: #fafbfc;
 }
 
 body[data-theme='dark'] {
@@ -16,4 +23,11 @@ body[data-theme='dark'] {
   --icons-color: #4a4d58;
   --green-color: #27ae60;
   --background-color: #0f1121;
+  --surface-color: #161827;
+  --surface-hover-color: #323542;
+  --accent-color: #f1f2f9;
+  --accent-text-color: #0f1121;
+  --option-text: #f1f2f9;
+  --option-hover-text: #0f1121;
+  --option-hover-bg: #f1f2f9;
 }

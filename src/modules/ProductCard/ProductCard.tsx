@@ -2,11 +2,14 @@ import React from 'react';
 import { Product } from '../../types/Products';
 import styles from './ProductCard.styles.module.scss';
 import FavoritesHeart from '../../assets/icons/favouritesheart.svg?react';
+// eslint-disable-next-line max-len
+import FavoritesHeartDark from '../../assets/icons/favouritesheart-dark.svg?react';
 import FavoritesFilled from '../../assets/icons/favouritesHeatFilled.svg?react';
 import { Link } from 'react-router-dom';
 import { useFavorites } from '../../context';
 import { useCart } from '../../context/CartContext';
 import classNames from 'classnames';
+import { useTheme } from '../../context/ThemeContext';
 
 type Props = {
   product: Product;
@@ -22,6 +25,7 @@ export const ProductCard: React.FC<Props> = ({
 
   const favorite = isFavorite(product.itemId);
   const inCart = isInCart(product.itemId);
+  const { theme } = useTheme();
 
   const handleCartClick = () => {
     if (inCart) {
@@ -29,6 +33,14 @@ export const ProductCard: React.FC<Props> = ({
     } else {
       addToCart(product);
     }
+  };
+
+  const getFavoriteIcon = () => {
+    if (favorite) {
+      return <FavoritesFilled />;
+    }
+
+    return theme === 'dark' ? <FavoritesHeartDark /> : <FavoritesHeart />;
   };
 
   return (
@@ -80,7 +92,7 @@ export const ProductCard: React.FC<Props> = ({
           className={styles.addToFavorite}
           onClick={() => toggleFavorite(product)}
         >
-          {favorite ? <FavoritesFilled /> : <FavoritesHeart />}
+          {getFavoriteIcon()}
         </button>
       </div>
     </article>

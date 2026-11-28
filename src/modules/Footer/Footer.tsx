@@ -1,6 +1,8 @@
 import { Logo } from '../../components/Logo';
 import styles from './Footer.styles.module.scss';
 import IconArrowUp from '../../assets/icons/arrowUp.svg?react';
+import IconArrowUpDark from '../../assets/icons/arrowUp-dark.svg?react';
+import { useTheme } from '../../context/ThemeContext';
 
 const footerLinks = [
   {
@@ -8,16 +10,18 @@ const footerLinks = [
     label: 'GITHUB',
   },
   {
-    href: 'https://example.com/contacts',
+    href: 'www.linkedin.com/in/mykyta-brengach',
     label: 'CONTACTS',
   },
   {
-    href: 'https://example.com/rights',
+    href: 'https://github.com/nikassafronovs/phone-catalog-react-typescript',
     label: 'RIGHTS',
   },
 ];
 
 export const Footer = () => {
+  const { theme } = useTheme();
+
   return (
     <>
       <footer className={styles.footer}>
@@ -50,7 +54,7 @@ export const Footer = () => {
               })
             }
           >
-            <IconArrowUp />
+            {theme === 'dark' ? <IconArrowUpDark /> : <IconArrowUp />}
           </button>
         </div>
       </footer>
